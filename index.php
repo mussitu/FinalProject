@@ -14,6 +14,8 @@ require_once "model.php";
 require_once "account.php";
 require_once "todo.php";
 
+date_default_timezone_set('America/Chicago');
+
 /*
 define(WEBROOT, dirname(__FILE__) . '/');
 

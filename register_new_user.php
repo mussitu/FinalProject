@@ -10,7 +10,7 @@ require_once "todo.php";
 
 function registerUser()
 {
-    echo "Registering user";
+    echo "<p>Registering user...</p>";
     
     ini_set('display_errors', 'On');
     error_reporting(E_ALL);
@@ -34,13 +34,20 @@ function registerUser()
     $formvars["email"] = $_POST["email"];
     $formvars["password"] = $_POST["password"];
     
+    try {
     accounts::insertOne(array('fname' => $formvars['firstname'],
                               'lname' => $formvars['lastname'],
                               'email' => $formvars['email'],
                               'password' => $formvars['password']));
+    echo "<p>Successfull registered user " . $formvars["email"] . "!</p>";
+    } catch (Exception $e) {
+        echo "<p>Failed to register: " . $e->getMessage() . "</p>";
+    }
     
     return true;
 }
 
 registerUser();
+
+echo "<p><a href='index.php'>Home</a></p>";
 ?>

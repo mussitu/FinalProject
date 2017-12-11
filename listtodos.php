@@ -65,6 +65,7 @@ EOD;
             <body>
 EOD;
         echo todo::format_to_html($recordsForUser);
+        echo "<p><a href='index.php'>Home</a></p>";
         echo "</body></html>";
     }
 }

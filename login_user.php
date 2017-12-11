@@ -40,7 +40,7 @@ function loginUser()
     foreach ($records as $record) {
         if ($record->email == $formvars["email"]) {
             if ($record->password == $formvars["password"]) {
-                echo "Found a match!";
+                $userFound = TRUE;
                 // Create a session...
                 session_start();
                 $_SESSION["useremail"] = $formvars["email"];
@@ -53,25 +53,18 @@ function loginUser()
                        
                 echo "<p>Hello $record->fname, you are now logged in!</p>";
                 echo "<p><a href='index.php'>Home</a></p>";
-            } else {
-                echo "<p>Invalid password.</p>";
-                echo "<ul>";
-                echo "<li><a href='login.php'>Login in again</a></li>";
-                echo "<li><a href='index.php'>Home</a></li>";
-                echo "</ul>";
-                $userFound = true;
+                break;
             }
-            break;
-        }
-        
-         if (! $userFound) {
-            echo "<p>No such user exists.</p>";
-            echo "<ul>";
-            echo "<li><a href='login.php'>Login in again</a></li>";
-            echo "<li><a href='index.php'>Home</a></li>";
-            echo "</ul>";
         }
     }
+        
+    if (! $userFound) {
+       echo "<p>No such user exists.</p>";
+       echo "<ul>";
+       echo "<li><a href='login.php'>Login in again</a></li>";
+       echo "<li><a href='index.php'>Home</a></li>";
+       echo "</ul>";
+   }
     
     return true;
 }
