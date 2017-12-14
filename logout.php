@@ -8,7 +8,7 @@
 
 session_start();
                 
-if(session_id() == '' || ! isset($_SESSION)) {
+if((session_status() === PHP_SESSION_NONE)  || (session_id() == '') || (! isset($_SESSION))) {
     echo "<h1>Not logged in!</h1>";
     echo "<p><a href='index.php'>Home</a></p>";
 } else {

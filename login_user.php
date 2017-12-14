@@ -14,7 +14,7 @@ function loginUser()
     ini_set('display_errors', 'On');
     error_reporting(E_ALL);
 
-    define('USELOCALSERVER', FALSE);
+    define('USELOCALSERVER', TRUE);
 
     define('DATABASE', 'mt444');
     define('USERNAME', 'mt444');
@@ -50,6 +50,10 @@ function loginUser()
                 $_SESSION["usergender"] = $record->gender;
                 $_SESSION["userpassword"] = $record->password;
                 $_SESSION["userid"] = $record->id;
+                
+                if (session_status() === PHP_SESSION_NONE) {
+                    echo "<p>There is no session.</p>";
+                }
                        
                 echo "<p>Hello $record->fname, you are now logged in!</p>";
                 echo "<p><a href='index.php'>Home</a></p>";

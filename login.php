@@ -6,6 +6,7 @@ require_once "todos.php";
 require_once "model.php";
 require_once "account.php";
 require_once "todo.php";
+session_start();
 ?>
 
 <!--

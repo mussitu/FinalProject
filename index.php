@@ -14,6 +14,8 @@ require_once "model.php";
 require_once "account.php";
 require_once "todo.php";
 
+session_start();
+
 date_default_timezone_set('America/Chicago');
 
 /*
@@ -43,8 +45,7 @@ if (USELOCALSERVER) {
     define('CONNECTION', 'sql2.njit.edu');
 }
 
-
-?>
+echo <<<EOT
 <html>
     <head>
         <meta charset="UTF-8">
@@ -56,13 +57,28 @@ if (USELOCALSERVER) {
         </style>
     </head>
     <body>
+EOT;
+        echo "<p> Session Status is " . session_status() . "</p>";
+        echo <<<EOT
         <ul>
+EOT;
+
+if (! isset($_SESSION["useremail"])) {
+            echo <<<EOT
             <li><a href="create_account.php">Create an Account</a></li>
             <li><a href="login.php">Login to Existing Account</a></li>
+EOT;
+} else {
+            echo <<<EOT
             <li><a href="updateinfo.php">Update Account Information</a></li>
             <li><a href="createtodo.php">Add ToDo</a></li>
             <li><a href="listtodos.php">List ToDos</a></li>
             <li><a href="logout.php">Logout</a></li>
+EOT;
+}
+    echo <<<EOT
         </ul>
     </body>
 </html>
+EOT;
+?>

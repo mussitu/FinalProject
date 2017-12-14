@@ -110,8 +110,6 @@ class collection {
         
         $sql .= " WHERE id = $id";
         
-        echo "<p>$sql</p>";
-        
         $statement = $db->prepare($sql);
         $statement->execute();
     }
